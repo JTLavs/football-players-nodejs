@@ -1,0 +1,32 @@
+html
+  head
+    title Player - #{thePlayer.name}
+    link(href="/css/styles.css" rel="stylesheet")
+    link(href="/css/bootstrap.min.css" rel="stylesheet")  
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      div.container
+        ul.nav.navbar-nav
+          li 
+            a(href='/') Home
+    div.container.starter-template
+      div.row
+        div.col-md-4
+          div.holder
+            h2 #{ thePlayer.name }
+            p Team : #{ thePlayer.team }
+            p Country : #{ thePlayer.county }
+        div.col-md-4
+          div.holder
+            table(style="width:100%")
+              th(colspan="3") Stats
+              tr
+                td Games Played
+                td(style="text-align:center") #{ thePlayer.goals }
+                td(style="text-align:right")
+                  a.btn.btn-primary(href='/addgoal?id='+thePlayer._id) Add
+              tr
+                td Goals
+                td(style="text-align:center") #{ thePlayer.goals }
+                td(style="text-align:right")
+                  a.btn.btn-primary(href='/addgoal?id='+thePlayer._id) Add

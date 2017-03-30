@@ -1,0 +1,16 @@
+body {
+  padding-top: 50px;
+}
+.starter-template {
+  padding: 40px 15px;
+}
+.holder{
+  background:#f1f1f1;
+  border-radius: 1px solid black;
+  color:black;
+  padding:10px;
+  width:100%;
+}
+table tr td{
+  padding:5px;
+}

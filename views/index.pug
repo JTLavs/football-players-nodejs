@@ -1,0 +1,92 @@
+html
+  head
+    title HOME
+  body
+    h1 FOOTBALL PLAYER DATABASE in NodeJS
+    form(method='get', action='/team')
+      label(for='team') Find players by team:  
+      select(name='team')
+        option(value='all') All
+        option(value='Arsenal') Arsenal
+        option(value='Manchester United') Manchester United
+        option(value='Manchester City') Manchester City
+        option(value='Tottenham') Tottenham
+      button(type='submit') Find players
+    form(method='get', action='/position')
+      label(for='position') Find players by position:
+      |  
+      select(name='position')
+        option(value='all') All
+        option(value='GK') GK
+        option(value='DF') DF
+        option(value='MF') MF
+        option(value='ST') ST
+      |  
+      button(type='submit') Find players
+    form(action='/add', method='post', style='border:1px solid black;padding:5px;')
+      p
+        label(for='name') Name:
+        |  
+        input(type='text', placeholder='Name', name='name')
+      p
+        label Team:
+        |
+        select(name='team')
+          option(value='Arsenal') Arsenal
+          option(value='Manchester United') Manchester United
+          option(value='Manchester City') Manchester City
+          option(value='Tottenham') Tottenham
+      p
+        label Position:
+        |  
+        select(name='position')
+          option(value='GK') GK
+          option(value='DF') DF
+          option(value='MF') MF
+          option(value='ST') ST
+      p
+        label Country:
+        |  
+        select(name='county')
+          option(value='England') England
+          option(value='France') France
+          option(value='Scotland') Scotland
+          option(value='Argentina') Argentina
+          option(value='Spain') Spain
+          option(value='Sweden') Sweden
+          option(value='Northern Ireland') Northern Ireland
+          option(value='Ireland') Ireland
+          option(value='Wales') Wales
+      p
+        label League:
+        |  
+        select(name='league')
+          option(value='Premier League') Premier League
+          option(value='La Liga') La Liga
+          option(value='Bundesliga') Bundesliga
+          option(value='Ligue 1') Ligue 1
+          option(value='MLS') MLS
+      |  
+      button(type='submit') Add
+    table.footballPlayers(border='1', cellpadding='5px')
+      th Name
+      th Team
+      th Position
+      th Country
+      th League
+      th Goals
+      th(colspan='3') Options
+      for players in footballPlayers
+        tr.player
+          td #{ players.name }
+          td #{ players.team }
+          td #{ players.position }
+          td #{ players.county }
+          td #{ players.league }
+          td #{ players.goals }
+          td
+            a(href='/view?id='+players._id) Edit
+          td
+            a(href='/delete?id='+players._id) Delete
+      else
+        p No players found

@@ -1,0 +1,21 @@
+{
+  "name": "mongo",
+  "version": "1.0.0",
+  "description": "Mongo DB example project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "dev": "nodemon index.js"
+  },
+  "author": "James Lavery",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "pug": "^2.0.0-beta11"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
