@@ -14,3 +14,13 @@ body {
 table tr td{
   padding:5px;
 }
+imgh{
+text-align:center;
+}
+pl{
+margin-left:10px!important;
+}
+.displayPlayersTable{
+border: 1px dashed orange;
+font-weight:bold;
+}

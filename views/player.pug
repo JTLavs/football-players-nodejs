@@ -16,17 +16,29 @@ html
             h2 #{ thePlayer.name }
             p Team : #{ thePlayer.team }
             p Country : #{ thePlayer.county }
+            img(src= thePlayer.img, height="150", width="250")
         div.col-md-4
           div.holder
             table(style="width:100%")
               th(colspan="3") Stats
               tr
                 td Games Played
-                td(style="text-align:center") #{ thePlayer.goals }
+                td(style="text-align:center") #{ thePlayer.gamesplayed }
                 td(style="text-align:right")
-                  a.btn.btn-primary(href='/addgoal?id='+thePlayer._id) Add
+                  a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal?id='+thePlayer._id+'&action=a')
+                  a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal?id='+thePlayer._id+'&action=s')
               tr
                 td Goals
                 td(style="text-align:center") #{ thePlayer.goals }
                 td(style="text-align:right")
-                  a.btn.btn-primary(href='/addgoal?id='+thePlayer._id) Add
+                  a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal?id='+thePlayer._id+'&action=a')
+                  a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal?id='+thePlayer._id+'&action=s')
+              tr
+                td Clean Sheets
+                td(style="text-align:center") 0
+                td(style="text-align:right")
+                  a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal?id='+thePlayer._id+'&action=a')
+                  a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal?id='+thePlayer._id+'&action=s')
+				
+
+            
