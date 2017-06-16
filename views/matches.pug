@@ -1,0 +1,71 @@
+html
+  head
+    title Football Players MongoDB
+    link(href="/css/styles.css" rel="stylesheet")
+    link(href="/css/bootstrap.min.css" rel="stylesheet")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="../js/scripts.js")
+  body
+    nav.navbar.navbar-light.bg-primary.navbar-fixed-top(style="background-color:orange")
+      div.container
+        ul.nav.navbar-nav
+          li 
+            a(href='/') Football MongoDB
+          li
+            a(href='/players') Players
+        ul.nav.navbar-nav.navbar-right
+          li
+            a#add Add match
+          li
+            a(href='/matches/'+previousweek) < Previous Matchweek
+          li
+            a(href='/matches/'+nextweek) Next Matchweek >
+    div.container.starter-template
+     div.row#addpanel(style='border-bottom:1px dashed black;padding:5px;width:500px;margin-bottom:20px;text-align:left;')
+            form(action='/add', method='post')
+               p
+               label(for='hometeam') Home:
+               |  
+               select(name='hometeam')
+                   option(value='Arsenal') Arsenal
+                   option(value='Manchester United') Manchester United
+                   option(value='Manchester City') Manchester City
+                   option(value='Tottenham') Tottenham
+               p
+               label Away:
+               |
+               select(name='awayteam')
+                   option(value='Arsenal') Arsenal
+                   option(value='Manchester United') Manchester United
+                   option(value='Manchester City') Manchester City
+                   option(value='Tottenham') Tottenham
+               p
+               label Matchweek:
+               |
+               input(name='matchweek' type='number', max='38', min='1')
+               p
+               button.btn.btn-primary(type='submit') Add
+            h5 Close
+     div.row.displayPlayersTable
+        table.footballPlayers(cellpadding='20px', width='60%',align='center', style="text-align:center")
+                th WK
+                each match in FootballMatches
+                    tr#match(style="border-top:1px solid orange", height='50px;')
+                        td #{match.matchweek}
+                        td(style='font-size:20px;') #{ match.hometeam }
+                        if match.homegls  < 0
+                          td V
+                        else
+                          td(style='font-size:20px;background:yellow') #{ match.homegls }
+                          td(style='background:yellow') - 
+                          td(style='font-size:20px;background:yellow') #{ match.awaygls }
+                        td(style='font-size:20px;') #{ match.awayteam }
+                        if match.done == 'N'
+                          td
+                            a.btn.btn-primary(href='/match/'+match.matchweek+'/g/h/'+match._id) Home Goal
+                            a.btn.btn-primary(href='/match/'+match.matchweek+'/g/a/'+match._id) Away Goal
+                            a.btn.btn-danger(href='/match/'+match.matchweek+'/ft/'+match._id) Full time
+                        else
+                          td(style='font-size:20px;color:red;') FT
+                else
+                    p No matches found

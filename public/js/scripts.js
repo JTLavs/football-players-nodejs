@@ -1,7 +1,13 @@
 $(document).ready(function(){
-	console.log('js loaded');
 	$('#addpanel').css('display', 'none');
 	$('#add').click(function(){
-		$('#addpanel').slideToggle();
+		$('#filterpanel').hide();
+		$('#addpanel').show();
+	})
+	
+	$('#filterpanel').css('display', 'none');
+	$('#filter').click(function(){
+		$('#addpanel').hide();
+		$('#filterpanel').show();
 	})
 })
