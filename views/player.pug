@@ -11,12 +11,12 @@ html
             a(href='/') Home
     div.container.starter-template
       div.row
-        div.col-md-4
-          div.holder(style="text-align:center")
-            h2(style="font-size:32px;") #{ thePlayer.name }
-            p 
-              h3(style="text-align:left") #{ thePlayer.country }
-              h3(style="text-align:left") #{ thePlayer.team }
+        div.col.md-12
+            h1 #{ thePlayer.name }
+            h5 #{ thePlayer.country } and #{ thePlayer.team }
+            a.btn.btn-danger(href='/delete/'+thePlayer._id, style="display:block;width:100px;") Delete
+      
+      div.row(style="margin-top:20px;")
         div.col-md-4
           div.holder
             table(style="width:100%")
@@ -48,82 +48,106 @@ html
                     a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s', disabled="true")
                  else
                     a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s')
-				  
 	
-      div.row(style="margin-top:20px;")
-        div.col-md-8
+        div.col-md-4
          div.holder
-             h4 Goal Breakdown:
-             table(style="width:60%")
+             h4 Goal Times:
+             table(style="width:100%")
               tr
-                td Outside Box:
-                td(style="text-align:center") #{ thePlayer.outsidebox }
-                td(style="text-align:right")
-                  a.btn.btn-primary.glyphicon.glyphicon-plus(href='/gp/'+thePlayer._id+'/a')
-                  if thePlayer.goals == 0
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/gp/'+thePlayer._id+'/s', disabled="true")
-                  else
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/gp/'+thePlayer._id+'/s')
-              tr
-                td Inside Box:
-                td(style="text-align:center") #{ thePlayer.insidebox }
-                td(style="text-align:right")
-                  a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a')
-                  if thePlayer.goals == 0
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s', disabled="true")
-                  else
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s')
+               th
+               th %
+               th
               tr
                 td 0'-15'
-                td(style="text-align:center") #{ thePlayer.zero_fifteen }
+                td(style="text-align:center") #{ thePlayer.00_15 }
                 td(style="text-align:right")
-                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/cs/'+thePlayer._id+'/a/zero_fifteen')
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/cs/'+thePlayer._id+'/a/00_15')
                  if thePlayer.zero_fifteen == 0
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/zero_fifteen', disabled="true")
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/00_15', disabled="true")
                  else
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/zero_fifteen')
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/00_15')
               tr
                 td 16'-30'
-                td(style="text-align:center") #{ thePlayer.sixteen_thirty }
+                td(style="text-align:center") #{ thePlayer.16_30 }
                 td(style="text-align:right")
-                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/cs/'+thePlayer._id+'/a/sixteen_thirty')
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/cs/'+thePlayer._id+'/a/16_30')
                  if thePlayer.cleansheets == 0
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/sixteen_thirty', disabled="true")
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/16_30', disabled="true")
                  else
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/sixteen_thirty')
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/16_30')
               tr
                 td 31'-45+'
-                td(style="text-align:center") #{ thePlayer.thirtyone_fourtyfive }
+                td(style="text-align:center") #{ thePlayer.31_45 }
                 td(style="text-align:right")
-                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a/thirtyone_fourtyfive')
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a/31_45')
                  if thePlayer.cleansheets == 0
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/thirtyone_fourtyfive', disabled="true")
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/31_45', disabled="true")
                  else
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='goal/'+thePlayer._id+'/s/thirtyone_fourtyfive')
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='goal/'+thePlayer._id+'/s/31_45')
               tr
                 td 46'-60'
-                td(style="text-align:center") #{ thePlayer.fourtysix_sixty }
+                td(style="text-align:center") #{ thePlayer.46_60 }
                 td(style="text-align:right")
-                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a/fourtysix_sixty')
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a/46_60')
                  if thePlayer.cleansheets == 0
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/fourtysix_sixty', disabled="true")
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/46_60', disabled="true")
                  else
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/fourtysix_sixty')
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/46_60')
               tr
                 td 61'-75'
-                td(style="text-align:center") #{ thePlayer.sixtyone_seventyfive }
+                td(style="text-align:center") #{ thePlayer.61_75 }
                 td(style="text-align:right")
-                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a/sixtyone_seventyfive')
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a/61_75')
                  if thePlayer.cleansheets == 0
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/sixtyone_seventyfive', disabled="true")
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/61_75', disabled="true")
                  else
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/sixtyone_seventyfive')
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/61_75')
               tr
                 td 76'-90+'
-                td(style="text-align:center") #{ thePlayer.seventysix_ninety }
+                td(style="text-align:center") #{ thePlayer.76_90 }
                 td(style="text-align:right")
-                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/cs/'+thePlayer._id+'/a/seventysix_ninety')
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/cs/'+thePlayer._id+'/a/76_90')
                  if thePlayer.cleansheets == 0
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/seventysix_ninety', disabled="true")
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/76_90', disabled="true")
                  else
-                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/seventysix_ninety')
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/76_90')
+        div.col-md-4
+         div.holder
+             h4 Goal Breakdown:
+             table(style="width:100%")
+              tr
+                td Headers:
+                td(style="text-align:center") #{ thePlayer.headers }
+                td(style="text-align:right")
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/cs/'+thePlayer._id+'/a/header')
+                 if thePlayer.zero_fifteen == 0
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/header', disabled="true")
+                 else
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/header')
+              tr
+                td Left Foot:
+                td(style="text-align:center") #{ thePlayer.leftfoot }
+                td(style="text-align:right")
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/cs/'+thePlayer._id+'/a/leftfoot')
+                 if thePlayer.left-foot == 0
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/leftfoot', disabled="true")
+                 else
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/cs/'+thePlayer._id+'/s/leftfoot')
+              tr
+                td Right Foot:
+                td(style="text-align:center") #{ thePlayer.rightfoot }
+                td(style="text-align:right")
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a/rightfoot')
+                 if thePlayer.right-foot == 0
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/rightfoot', disabled="true")
+                 else
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='goal/'+thePlayer._id+'/s/rightfoot')
+              tr
+                td Pens:
+                td(style="text-align:center") #{ thePlayer.pens }
+                td(style="text-align:right")
+                 a.btn.btn-primary.glyphicon.glyphicon-plus(href='/goal/'+thePlayer._id+'/a/pens')
+                 if thePlayer.pens == 0
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/pens', disabled="true")
+                 else
+                    a.btn.btn-primary.glyphicon.glyphicon-minus(href='/goal/'+thePlayer._id+'/s/pens')

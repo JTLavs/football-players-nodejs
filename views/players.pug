@@ -4,7 +4,7 @@ html
     link(href="/css/styles.css" rel="stylesheet")
     link(href="/css/bootstrap.min.css" rel="stylesheet")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
-    script(src="../js/scripts.js")
+    script(src="js/scripts.js")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js")
   body
     nav.navbar.navbar-light.bg-primary.navbar-fixed-top(style="background-color:orange")
@@ -80,62 +80,65 @@ html
               li
                 a(href="#") Games Played
               li
-                a(href="#") Cleansheets
+                a(href="#") Cleansheets				   
         ul.nav.navbar-nav.navbar-right
           li
-            a#add Add match
-
+            a(data-toggle="modal", data-target="#addPlayer") Add Player
     div.container.starter-template
-     div.row#addpanel(style='border-bottom:1px dashed black;padding:5px;width:500px;margin-bottom:20px;text-align:left;')
+     div.modal.fade#addPlayer(style="width:60%;margin:0 auto;")
+      div.modal-dialog
+       div.modal-content
+         div.modal-header
+            h2.modal-title(style="display:inline") Add Player
+            button.close(type="button", data-dismiss="modal", aria-label="Close", style="display:inline")
+              span(aria-hidden="true") &times;
+         div.modal-body
             form(action='/add', method='post')
                p
-               label(for='hometeam') Home:
+               label(for='name') Name:
                |  
-               select(name='hometeam')
+               input(type='text', placeholder='Name', name='name')
+               p
+               label Team:
+               |
+               select(name='team')
                    option(value='Arsenal') Arsenal
                    option(value='Manchester United') Manchester United
                    option(value='Manchester City') Manchester City
                    option(value='Tottenham') Tottenham
                p
-               label Away:
-               |
-               select(name='awayteam')
-                   option(value='Arsenal') Arsenal
-                   option(value='Manchester United') Manchester United
-                   option(value='Manchester City') Manchester City
-                   option(value='Tottenham') Tottenham
+               label Position:
+               |  
+               select(name='position')
+                   option(value='GK') GK
+                   option(value='DF') DF
+                   option(value='MF') MF
+                   option(value='ST') ST
                p
-               label Matchweek:
-               |
-               input(name='matchweek' type='number', max='38', min='1')
-               p
-               button.btn.btn-primary(type='submit') Add
-            h5 Close
+               label Country:
+               |  
+               select(name='county')
+                   option(value='England') England
+                   option(value='France') France
+                   option(value='Scotland') Scotland
+                   option(value='Argentina') Argentina
+                   option(value='Spain') Spain
+                   option(value='Sweden') Sweden
+                   option(value='Northern Ireland') Northern Ireland
+                   option(value='Ireland') Ireland
+                   option(value='Wales') Wales
+                   option(value='Brazil') Brazil
+         div.modal-footer   
+               button.btn.btn-primary.large(type='submit') Add
 
      div.row.displayPlayersTable
-       p(style="text-align:center;margin-bottom:10px;")
-         a(href='/matches/'+previousweek) << Prev 
-         span(style="font-size:16px;") ||     
-         a(href='/matches/'+nextweek) Next >>
-       table.footballPlayers(width='70%',align='center', style="text-align:center")
-                th WK
-                each match in FootballMatches
-                    tr#match(style="border-top:1px solid orange", height='50px;')
-                        td #{match.matchweek}
-                        td(style='font-size:16px;') #{ match.hometeam }
-                        if match.homegls  < 0
-                          td V
-                        else
-                          td(style='font-size:16px;background:yellow') #{ match.homegls }
-                          td(style='background:yellow') - 
-                          td(style='font-size:16px;background:yellow') #{ match.awaygls }
-                        td(style='font-size:16px;') #{ match.awayteam }
-                        if match.done == 'N'
-                          td
-                            a.btn.btn-primary(href='/match/'+match.matchweek+'/g/h/'+match._id) Home Goal
-                            a.btn.btn-primary(href='/match/'+match.matchweek+'/g/a/'+match._id) Away Goal
-                            a.btn.btn-danger(href='/match/'+match.matchweek+'/ft/'+match._id) Full time
-                        else
-                          td(style='font-size:20px;color:red;') FT
+        table.footballPlayers(width='50%' align="center", style="background:#f9f9f9")
+                each players in footballPlayers
+                    tr#player(style="border-bottom:1px solid orange;font-size:15px")
+                        td #{ players.name }
+                        td #{ players.position}
+                        td #{ players.goals }
+                        td(style="text-align:center")
+                            a.btn.btn-primary(href='/player/'+players._id) View Details
                 else
-                    p No matches found
+                    h1 Oops.......No players are at this club :(

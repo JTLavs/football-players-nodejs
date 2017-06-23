@@ -5,7 +5,7 @@ body {
   padding: 40px 15px;
 }
 .holder{
-  background:#f1f1f1;
+  background:#ffc44f;
   border-radius: 10px;
   color:black;
   padding:10px;
@@ -20,7 +20,7 @@ text-align:center;
 pl{
 margin-left:10px!important;
 }
-.displayPlayersTable td{
-border: 1px dashed #f1f1f1;
+.displayPlayersTable table{
+border-radius:5px;
 font-weight:bold;
 }
