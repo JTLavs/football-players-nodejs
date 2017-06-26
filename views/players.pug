@@ -20,11 +20,11 @@ html
                  ul.list-unstyled.col-md-6
                    each week in weeksOne
                     li
-                      a(href="#") Week #{ week}
+                      a(href='../matches/'+week) Week #{ week}
                  ul.list-unstyled.col-md-6
                    each week in weeksTwo
                     li
-                      a(href="#") Week #{ week}
+                      a(href='../matches/'+week) Week #{ week}
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown') Players by Club
               span.caret
@@ -85,9 +85,12 @@ html
           li
             a(data-toggle="modal", data-target="#addPlayer") Add Player
     div.container.starter-template
-     div.modal.fade#addPlayer(style="width:60%;margin:0 auto;")
-      div.modal-dialog
-       div.modal-content
+      if team
+        div(style="text-align:center;margin-bottom:10px;")
+          img(src="../img/"+team+".png", style="width:64px;height:64px;display:inline-block;")
+      div.modal.fade#addPlayer(style="width:60%;margin:0 auto;")
+       div.modal-dialog
+        div.modal-content
          div.modal-header
             h2.modal-title(style="display:inline") Add Player
             button.close(type="button", data-dismiss="modal", aria-label="Close", style="display:inline")
@@ -117,21 +120,15 @@ html
                p
                label Country:
                |  
-               select(name='county')
-                   option(value='England') England
-                   option(value='France') France
-                   option(value='Scotland') Scotland
-                   option(value='Argentina') Argentina
-                   option(value='Spain') Spain
-                   option(value='Sweden') Sweden
-                   option(value='Northern Ireland') Northern Ireland
-                   option(value='Ireland') Ireland
-                   option(value='Wales') Wales
-                   option(value='Brazil') Brazil
+               select(name='county', size='1')
+                   each country in countriesOne
+                     option(value=country) #{ country }
+                   each country in countriesTwo
+                     option(value=country) #{ country }
          div.modal-footer   
                button.btn.btn-primary.large(type='submit') Add
 
-     div.row.displayPlayersTable
+      div.row.displayPlayersTable
         table.footballPlayers(width='50%' align="center", style="background:#f9f9f9")
                 each players in footballPlayers
                     tr#player(style="border-bottom:1px solid orange;font-size:15px")
@@ -141,4 +138,4 @@ html
                         td(style="text-align:center")
                             a.btn.btn-primary(href='/player/'+players._id) View Details
                 else
-                    h1 Oops.......No players are at this club :(
+                    h1(style='text-align:center;') Oops.......No players are at this club :(

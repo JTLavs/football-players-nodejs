@@ -151,7 +151,7 @@ app.get('/players/:team', (req, res)=>{
 	db.collection('footballPlayers').find({'team' : exactTeam}).toArray(function (err, result){
 		res.render('players.pug', 
 		            {footballPlayers : result, 'weeksOne' : weeksOne, 'weeksTwo' : weeksTwo,
-		             'countriesOne' : countriesOne, 'countriesTwo': countriesTwo}
+		             'countriesOne' : countriesOne, 'countriesTwo': countriesTwo, 'team' : exactTeam}
 				  )
 	})
 });

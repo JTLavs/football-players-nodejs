@@ -20,11 +20,11 @@ html
                  ul.list-unstyled.col-md-6
                    each week in weeksOne
                     li
-                      a(href="#") Week #{ week}
+                      a(href=week) Week #{ week}
                  ul.list-unstyled.col-md-6
                    each week in weeksTwo
                     li
-                      a(href="#") Week #{ week}
+                      a(href=week) Week #{ week}
           li.dropdown
             a.dropdown-toggle(href='#', data-toggle='dropdown') Players by Club
               span.caret
@@ -83,34 +83,48 @@ html
                 a(href="#") Cleansheets
         ul.nav.navbar-nav.navbar-right
           li
-            a#add Add match
+            a(data-toggle="modal", data-target="#addMatch") Add Match
 
     div.container.starter-template
-     div.row#addpanel(style='border-bottom:1px dashed black;padding:5px;width:500px;margin-bottom:20px;text-align:left;')
-            form(action='/add', method='post')
+     div.modal.fade#addMatch(style="width:50%;margin:0 auto;")
+       div.modal-dialog
+        div.modal-content
+         div.modal-header
+            h2.modal-title(style="display:inline") Add Match
+            button.close(type="button", data-dismiss="modal", aria-label="Close", style="display:inline")
+              span(aria-hidden="true") &times;
+         div.modal-body
+            form(action='/add', method='post' style="margin:0 auto;")
                p
-               label(for='hometeam') Home:
+               label(for='hometeam', style="margin-left:10px;") Home: 
                |  
-               select(name='hometeam')
-                   option(value='Arsenal') Arsenal
-                   option(value='Manchester United') Manchester United
-                   option(value='Manchester City') Manchester City
-                   option(value='Tottenham') Tottenham
+               select(name='hometeam', style="margin-left:10px;")
+                 option(value="Arsenal") Arsenal
+                 option(value='Bournemouth') Bournemouth
+                 option(value='Brighton') Brighton
+                 option(value='Burnley') Burnley
+                 option(value='Chelsea') Chelsea
+                 option(value='Crystal-palace') Crystal Palace
+                 option(value="Everton") Everton
+                 option(value='Liverpool') Liverpool
                p
-               label Away:
+               label(for="awayteam", style="margin-left:10px;") Away:  
                |
-               select(name='awayteam')
-                   option(value='Arsenal') Arsenal
-                   option(value='Manchester United') Manchester United
-                   option(value='Manchester City') Manchester City
-                   option(value='Tottenham') Tottenham
+               select(name='awayteam', style="margin-left:10px;")
+                 option(value="Arsenal") Arsenal
+                 option(value='Bournemouth') Bournemouth
+                 option(value='Brighton') Brighton
+                 option(value='Burnley') Burnley
+                 option(value='Chelsea') Chelsea
+                 option(value='Crystal-palace') Crystal Palace
+                 option(value="Everton") Everton
+                 option(value='Liverpool') Liverpool
                p
-               label Matchweek:
+               label(for='matchweek', style="margin-left:10px;") Matchweek:  
                |
-               input(name='matchweek' type='number', max='38', min='1')
-               p
-               button.btn.btn-primary(type='submit') Add
-            h5 Close
+               input(name='matchweek' type='number', max='38', min='1', style="margin-left:10px;")
+         div.modal-footer   
+               button.btn.btn-primary.large(type='submit') Add
 
      div.row.displayPlayersTable
        p(style="text-align:center;margin-bottom:10px;")

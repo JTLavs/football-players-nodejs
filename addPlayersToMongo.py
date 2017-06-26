@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-#name team position country league
+#name country position
 players = [("David Silva", "Spain", "MF"),
 		("Kevin De Bruyne", "Belgium", "MF"),
 		("Fernandinho", "Brazil", "MF"),
@@ -15,13 +15,9 @@ client = MongoClient('localhost', 27017)
 db = client.admin
 collection = db.footballPlayers
 
+team = "Manchester City"
 for player in players:
-	goals = 0
-	cleansheets = 0
-	gamesplayed = 0
-	zero_fifteen = 0
-	
-	team = "Manchester City"
+
 	playerInsert = {"name" : player[0], "team" : team, "position" : player[2], "country": player[1], "league" : "Premier League", "goals" : 0, 
 			  "gamesplayed" : 0, "cleansheets" : 0, "00_15" : 0, "16_30" : 0, "31_45" : 0, "46_60" : 0, "61_75" : 0, "76_90" : 0, "headers" : 0,
 			  "pens" : 0, "leftfoot" : 0, "rightfoot" : 0}
